@@ -1,13 +1,13 @@
 from rest_framework.response import Response
 from .serializers import ArticleSerializer
 from rest_framework.decorators import api_view
-# from .models import Article
+from .models import Article
 
 # Create your views here.
 @api_view(('GET','POST'))
 def index(request):
     if request.method == 'GET':
-        articles = request.objects.all()
+        articles = Article.objects.all()
         serializer = ArticleSerializer(articles,many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
